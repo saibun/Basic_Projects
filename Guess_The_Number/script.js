@@ -4,14 +4,10 @@
 // document.querySelector(".number").textContent = 6;
 // document.querySelector(".score").textContent = "User number of attempts"
 // document.querySelector(".guess").value=6;
-const secret_number= Math.trunc(Math.random()*20+1);
-console.log(secret_number);
+let secret_number= Math.trunc(Math.random()*20+1);
+//document.querySelector(".number").textContent = secret_number;
 
-//-------- Again button reload the page to start a new game--
-document.querySelector(".again").addEventListener("click", function (){
-    location.reload();
-})
-let score = Number(document.querySelector(".score").textContent);
+let score = 20;
 document.querySelector(".highscore").textContent = sessionStorage.getItem("lastHighScore");
 document.querySelector(".check").addEventListener("click",function(){
     const value = Number(document.querySelector(".guess").value);
@@ -25,7 +21,6 @@ document.querySelector(".check").addEventListener("click",function(){
             document.querySelector(".number").textContent = secret_number;
             document.querySelector(".highscore").textContent = score;
             sessionStorage.setItem("lastHighScore",score);
-            document.querySelector(".check").style.display = "none";
             document.querySelector(".check").style.display = "none";
             document.querySelector("body").style.backgroundColor = "#60b347";
     
@@ -46,4 +41,15 @@ document.querySelector(".check").addEventListener("click",function(){
 
     
     
+})
+
+document.querySelector(".again").addEventListener("click", function (){
+    score=20;
+    secret_number= Math.trunc(Math.random()*20+1);
+    document.querySelector(".score").textContent = score;
+    document.querySelector(".number").textContent = "?";
+    document.querySelector(".message").textContent = "Start guessing...";
+    document.querySelector("body").style.backgroundColor = "#222";
+    document.querySelector(".check").style.display = "block";
+    document.querySelector(".guess").value = '';
 })
