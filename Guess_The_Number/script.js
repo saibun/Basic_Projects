@@ -6,7 +6,8 @@
 // document.querySelector(".guess").value=6;
 const secret_number= Math.trunc(Math.random()*20+1);
 console.log(secret_number);
-//document.querySelector(".number").textContent = secret_number;
+
+//-------- Again button reload the page to start a new game--
 document.querySelector(".again").addEventListener("click", function (){
     location.reload();
 })
