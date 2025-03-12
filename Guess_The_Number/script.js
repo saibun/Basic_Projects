@@ -1,35 +1,44 @@
 'use strict';
-// console.log(document.querySelector(".message").textContent);
-// document.querySelector(".message").textContent = "🦾 Correct Number!"
-// document.querySelector(".number").textContent = 6;
-// document.querySelector(".score").textContent = "User number of attempts"
-// document.querySelector(".guess").value=6;
-let secret_number= Math.trunc(Math.random()*20+1);
-//document.querySelector(".number").textContent = secret_number;
-
+//--- Generate Random Number Logic---
+let secret_number = Math.trunc(Math.random()*19+1);
+//--- Set Score and High Score
 let score = 20;
-document.querySelector(".highscore").textContent = sessionStorage.getItem("lastHighScore");
+let lastHighScore = 0;
+document.querySelector(".highscore").textContent = lastHighScore;
+//---Click Check Button And Start Comparing With Guess Numbers Logic---
 document.querySelector(".check").addEventListener("click",function(){
+    
     const value = Number(document.querySelector(".guess").value);
     if(score > 0){
         if(!value){
             document.querySelector(".message").textContent = "❌ Not a Number!"
             score-=1;
             document.querySelector(".score").textContent = score;
-        }else if(value === secret_number){
+        }
+        else if(value === secret_number){
             document.querySelector(".message").textContent = "🦾 Correct Number!";
             document.querySelector(".number").textContent = secret_number;
-            document.querySelector(".highscore").textContent = score;
-            sessionStorage.setItem("lastHighScore",score);
+            if(score > lastHighScore){
+                lastHighScore = score;
+                document.querySelector(".highscore").textContent = lastHighScore;
+
+            }
+            
             document.querySelector(".check").style.display = "none";
             document.querySelector("body").style.backgroundColor = "#60b347";
     
-        }else if(value > secret_number){
-            document.querySelector(".message").textContent = "⬇ Guess Number is smaller!";
-            score-=1;
-            document.querySelector(".score").textContent = score;
-        }else if(value < secret_number){
-            document.querySelector(".message").textContent = "⬆ Guess Number is bigger!";
+        }
+        // else if(value > secret_number){
+        //     document.querySelector(".message").textContent = "⬇ Guess Number is smaller!";
+        //     score-=1;
+        //     document.querySelector(".score").textContent = score;
+        // }else if(value < secret_number){
+        //     document.querySelector(".message").textContent = "⬆ Guess Number is bigger!";
+        //     score-=1;
+        //     document.querySelector(".score").textContent = score;
+        // }
+        else if (value !== secret_number){
+            document.querySelector(".message").textContent = value > secret_number ? " Too High ⬆" : " Too Low ⬇";
             score-=1;
             document.querySelector(".score").textContent = score;
         }
@@ -43,9 +52,10 @@ document.querySelector(".check").addEventListener("click",function(){
     
 })
 
+//---Click Again To Strat Again The Game Logic ---
 document.querySelector(".again").addEventListener("click", function (){
     score=20;
-    secret_number= Math.trunc(Math.random()*20+1);
+    secret_number = Math.trunc(Math.random()*19+1);
     document.querySelector(".score").textContent = score;
     document.querySelector(".number").textContent = "?";
     document.querySelector(".message").textContent = "Start guessing...";
