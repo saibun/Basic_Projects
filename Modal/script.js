@@ -1,21 +1,29 @@
 'use strict';
-let hidden = document.querySelector(".hidden");
+let modal = document.querySelector(".modal");
 let overlay = document.querySelector(".overlay");
 let closeModal = document.querySelector(".close-modal");
 let showModal = document.querySelectorAll(".show-modal");
-function addHidden(){
-    hidden.classList.add("hidden");
+function removePOPup(){
+    modal.classList.add("hidden");
     overlay.classList.add("hidden");
 }
-function removeHidden(){
-    hidden.classList.remove("hidden");
+function addPOPup(){
+    modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
 }
 
 for(let i =0; i<showModal.length;i++){
-    showModal[i].addEventListener('click',removeHidden);
+    showModal[i].addEventListener('click',addPOPup);
 }
 
-closeModal.addEventListener('click',addHidden);
+closeModal.addEventListener('click',removePOPup);
 
-overlay.addEventListener('click',addHidden);
+overlay.addEventListener('click',removePOPup);
+
+document.addEventListener('keydown',function(e){
+    if(e.key === 'Escape' && !modal.classList.contains("hidden")){
+        removePOPup()
+    }
+    
+
+})
