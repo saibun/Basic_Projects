@@ -1,0 +1,18 @@
+{
+  "name": "monolithic_demo",
+  "version": "1.0.0",
+  "description": "monolithic ecommerce demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "saikat chatterjee",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
