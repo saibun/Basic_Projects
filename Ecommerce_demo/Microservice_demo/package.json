@@ -1,0 +1,16 @@
+{
+  "name": "microservice_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:all": "concurrently \"npx nodemon --prefix user_service index.js\" \"npx nodemon --prefix product_service index.js\" \"npx nodemon --prefix order_service index.js\" \"npx nodemon --prefix api_gateway index.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
